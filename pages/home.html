@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <header onload="loadBooks()">
+        <h1>MyReads</h1>
+        <div class="search">
+            <input type="text" placeholder="search">
+            <button type="button" id="search-button">🔎</button>
+        </div>
+        <nav>
+            <li><a href="#">Home</a></li>
+            <li><a href="">My Books</a></li>
+        </nav>
+    </header>
+
+    <main>
+        <div id="book-layout" class="book-layout">
+            <div class="book-container">
+                <img src="https://covers.openlibrary.org/b/id/13011239-M.jpg" alt="">
+                <div class="book-details">
+                    <h2>The Lightning Thief</h2>
+                    <ul class="authors-list">
+                        <li>author 1</li>
+                        <li>author 2</li>
+                    </ul>
+                    <button>Add Book</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="nome">
+            <h4>Made by:</h4>
+            <p>Nixon Sadique Macucha</p>
+        </div>
+
+        <div id="contactos">
+            <h4>Contactos</h4>
+            <p>
+                E-Mail:
+                <a href="mailto:nixonsadique2005@gmail.com">nixonsadique2005@gmail.com</a>
+            </p>
+            <p>
+                Celular:
+                <a href="tel:+258827793535">82 779 3535</a>
+            </p>
+        </div>
+        <div id="socials">
+            <h4>Socials</h4>
+            <a href="https://www.instagram.com/_nixon_sadique/"><img src="/images/instagram.svg" alt=""></a>
+            <a href="#"><img src="/images/whatsapp.svg" alt=""></a>
+            <a href="https://github.com/NixonSadique/"><img src="/images/github.svg" alt=""></a>
+        </div>
+    </footer>
+
+    <script src="/script/main.js"></script>
+</body>
+
+</html>

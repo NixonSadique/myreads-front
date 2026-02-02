@@ -1,0 +1,232 @@
+:root {
+    --text: #d2d1ff;
+    --background: #010104;
+    --secondary-background: #26262b;
+    --primary: #898aec;
+    --secondary: #62189a;
+    --accent: #968299;
+
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Inter, Verdana, Geneva, Tahoma, sans-serif;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    color: var(--text);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.hidden {
+    display: none;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    padding: 1rem;
+    border-bottom: 1px solid var(--accent);
+    margin-bottom: 1rem;
+}
+
+header .search{
+    display: flex;
+    border: 1px solid white;
+    background-color: var(--accent);
+    height: 35px;
+    width: 350px;
+    border-radius: 1rem;
+}
+
+header .search input{
+    flex: 1;
+    border: 0;
+    background-color: var(--accent);
+    overflow: hidden;
+    border-radius: 1rem 0 0 1rem;
+    text-align: center;
+}
+
+header .search button{
+    background-color: white;
+    border: 0;
+    border-radius: 0 1rem 1rem 0;
+    padding: 10px;
+    text-align: center;
+}
+
+header nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+
+nav li {
+    list-style: none;
+}
+
+nav li a {
+    text-decoration: none;
+    color: var(--text);
+    text-align: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--secondary);
+    border: 1px solid var(--accent);
+    border-radius: 0.5rem;
+}
+
+
+main {
+    margin: 3rem 1rem;
+}
+
+.index-layout {
+    display: flex;
+    padding: 1rem;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    text-align: center;
+}
+
+.introdutory-text {
+    max-width: 60%;
+    padding: 1rem;
+    margin-right: 1rem;
+}
+
+.button-container {
+    flex-grow: 1;
+    align-content: center;
+}
+
+.button-container a {
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    margin: 1rem 1rem;
+    border-radius: 0.675rem;
+    background-color: var(--primary);
+    font-weight: bold;
+}
+
+.form-container{
+    box-shadow: 2px 2px 1rem whitesmoke;
+    margin: 5rem 400px;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    background-color: var(--accent);
+}
+
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    padding: auto 50px;
+}
+
+.form-title {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 3em;
+    color: #595894;
+}
+
+.form-layout input{
+    border: none;
+    margin: 6px auto;
+    width: 400px;
+    padding: 1.3rem;
+    text-align: center;
+    border-radius: 1rem;
+    color: #000000; 
+}
+
+.form-layout button{
+    cursor: pointer;
+    margin: 1rem auto;
+    width: 200px;
+    height: 60px;
+    background-color: var(--primary);
+    border: 1px solid black;
+    border-radius: 1rem;
+    font-weight: bolder;
+    font-size: 1em;
+}
+
+.form-layout span{
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.form-layout a {
+    text-decoration: underline;
+}
+
+button:hover , .button-container *:hover {
+    box-shadow: 2px 3px 1rem var(--secondary-background);
+}
+
+.book-layout{
+    background-color: rgb(94, 67, 67);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.book-container{
+    border: 1px solid black;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-color: var(--accent);
+}
+
+.book-container img{
+    border: 1px black solid;
+    width: 300px;
+    background-color: var(--primary);
+    border-radius: 8px;
+}
+
+.book-details{
+    text-align: center;
+    background-color: var(--secondary);
+    padding: 1rem;
+}
+
+.book-container button{
+    text-align: center;
+    border-radius: 1rem;
+    padding: 10px;
+    border: 0;
+    font-weight: bolder;
+    font-size: larger;
+    background: none;
+    cursor: pointer;
+}
+
+footer {
+    background-color: var(--secondary-background);
+    display: flex;
+    padding: 5rem 0;
+    justify-content: space-around;
+    align-content: center;
+    text-align: center;
+    margin-top: 1rem;
+    border-top: 1px solid var(--accent);
+
+}
+
+#socials img {
+    width: 2rem;
+    margin: auto 15px;
+}
