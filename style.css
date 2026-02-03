@@ -38,30 +38,54 @@ header {
     margin-bottom: 1rem;
 }
 
-header .search{
-    display: flex;
+header .search-bar {
+    height: 50px;
+    width: 400px;
     border: 1px solid white;
-    background-color: var(--accent);
-    height: 35px;
-    width: 350px;
+    display: flex;
     border-radius: 1rem;
 }
 
-header .search input{
+header .search-bar .search-form {
     flex: 1;
-    border: 0;
-    background-color: var(--accent);
-    overflow: hidden;
-    border-radius: 1rem 0 0 1rem;
-    text-align: center;
+    display: flex;
+    border: 1px solid red;
+    justify-content: space-around;
+    
 }
 
-header .search button{
-    background-color: white;
-    border: 0;
-    border-radius: 0 1rem 1rem 0;
-    padding: 10px;
+header .search-bar .search-form select {
+    border: none;
+    width: 70px;
+    color: #000000;
+    border-radius: 1rem 0 0 1rem;
+}
+input:focus{
+    outline: invert;
+}
+
+select option{
+    all: inherit;
+}
+
+header .search-bar .search-form .search-input {
     text-align: center;
+    border: none;
+    width: 260px;
+    color: #000000;
+    font-weight: bolder;
+}
+
+
+header .search-bar .search-form .search-submit {
+    background-image: url("images/search.svg");
+    background-color: #e9e9ed;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 0 1rem 1rem 0 ;
+    border: 0;
+    cursor: pointer;
+    flex: 1;
 }
 
 header nav {
@@ -117,7 +141,7 @@ main {
     font-weight: bold;
 }
 
-.form-container{
+.form-container {
     box-shadow: 2px 2px 1rem whitesmoke;
     margin: 5rem 400px;
     padding: 2rem 1rem;
@@ -138,17 +162,17 @@ main {
     color: #595894;
 }
 
-.form-layout input{
+.form-layout input {
     border: none;
     margin: 6px auto;
     width: 400px;
     padding: 1.3rem;
     text-align: center;
     border-radius: 1rem;
-    color: #000000; 
+    color: #000000;
 }
 
-.form-layout button{
+.form-layout button {
     cursor: pointer;
     margin: 1rem auto;
     width: 200px;
@@ -160,7 +184,7 @@ main {
     font-size: 1em;
 }
 
-.form-layout span{
+.form-layout span {
     display: block;
     text-align: center;
     margin: 1rem auto;
@@ -170,11 +194,12 @@ main {
     text-decoration: underline;
 }
 
-button:hover , .button-container *:hover {
+button:hover,
+.button-container *:hover {
     box-shadow: 2px 3px 1rem var(--secondary-background);
 }
 
-.book-layout{
+.book-layout {
     background-color: rgb(94, 67, 67);
     display: flex;
     justify-content: center;
@@ -183,28 +208,28 @@ button:hover , .button-container *:hover {
     padding: 1rem;
 }
 
-.book-container{
+.book-container {
     border: 1px solid black;
     padding: 0.5rem;
     border-radius: 1rem;
     background-color: var(--accent);
 }
 
-.book-container img{
+.book-container img {
     border: 1px black solid;
     width: 300px;
     background-color: var(--primary);
     border-radius: 8px;
 }
 
-.book-details{
+.book-details {
     text-align: center;
     max-width: 300px;
     background-color: var(--secondary);
     padding: 1rem;
 }
 
-.book-container button{
+.book-container button {
     text-align: center;
     border-radius: 1rem;
     padding: 10px;

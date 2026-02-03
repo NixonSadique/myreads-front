@@ -16,29 +16,28 @@
 <body>
     <header onload="loadBooks()">
         <h1>MyReads</h1>
-        <div class="search">
-            <input type="text" placeholder="search">
-            <button type="button" id="search-button">🔎</button>
+
+        <div class="search-bar">
+            <form class="search-form" onsubmit="search()">
+                <select class="search-select" name="" id="search-select">
+                    <option value="search-books">Books(Gen)</option>
+                    <option value="get-books">Books(No author)</option>
+                    <option value="search-authors">Authors</option>
+                </select>
+                <input id="search-input" class="search-input" type="text" placeholder="Search">
+                <input class="search-submit" type="submit" value="">
+            </form>
         </div>
+
         <nav>
             <li><a href="#">Home</a></li>
-            <li><a href="">My Books</a></li>
+            <li><a href="#">My Books</a></li>
         </nav>
     </header>
 
     <main>
         <div id="book-layout" class="book-layout">
-            <div class="book-container">
-                <img src="https://covers.openlibrary.org/b/id/13011239-M.jpg" alt="">
-                <div class="book-details">
-                    <h2>The Lightning Thief</h2>
-                    <ul class="authors-list">
-                        <li>author 1</li>
-                        <li>author 2</li>
-                    </ul>
-                    <button>Add Book</button>
-                </div>
-            </div>
+            <h1>Loading Books...</h1>
         </div>
     </main>
 

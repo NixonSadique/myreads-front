@@ -28,6 +28,9 @@ const createUser = async (e) => {
         alert(data);
         const authData = await authRequest(email, password);
         localStorage.setItem("token", authData.token);
+        localStorage.setItem("expirationDate", authData.expiresAt);
+        localStorage.setItem("userId", authData.user.id);
+        localStorage.setItem("username", authData.user.username);
         window.location.href = "/pages/home.html";
     } catch (e) {
         console.error(e);
@@ -68,6 +71,9 @@ const authUser = async (e) => {
     try {
         const data = await authRequest(email, password);
         localStorage.setItem("token", data.token);
+        localStorage.setItem("expirationDate", authData.expiresAt);
+        localStorage.setItem("userId", authData.user.id);
+        localStorage.setItem("username", authData.user.username);
         window.location.href = "/pages/home.html"
     } catch (e) {
         console.error(e);
