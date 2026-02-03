@@ -66,7 +66,8 @@ async function loadBooks() {
     }
 }
 
-const search = async () => {
+const search = async (e) => {
+    e.preventDefault();
     const query = searchInput.value || "1";
 
     try {
@@ -74,7 +75,7 @@ const search = async () => {
         switch (searchType) {
             case "search-books":
                 cleanLayout();
-                const bookSearch = await fetchData(searchInput, searchBookPath)
+                const bookSearch = await fetchData(query, searchBookPath)
 
                 for (let i = 0; i < bookSearch.length; i++) {
                     buildBookContainer(bookSearch[i]);
@@ -82,7 +83,7 @@ const search = async () => {
                 break;
             case "get-books":
                 cleanLayout();
-                const getBooks = await fetchData(searchInput, getBookPath);
+                const getBooks = await fetchData(query, getBookPath);
 
                 for (let i = 0; i < getBooks.length; i++) {
                     buildBookContainer(getBooks[i]);
@@ -90,7 +91,7 @@ const search = async () => {
                 break;
             case 'searchAuthors':
                 cleanLayout();
-                const authors = await fetchData(searchInput, searchAuthorsPath);
+                const authors = await fetchData(query, searchAuthorsPath);
                 const ol = document.createElement('ol')
                 for (let i = 0; i < authors.length; i++) {
                     const li = document.createElement('li');
@@ -149,3 +150,5 @@ function checkLogin() {
 
 
 window.onload = checkLogin();
+
+const searchForm = document.getElementById("search-form").addEventListener("submit", search)
