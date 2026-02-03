@@ -71,9 +71,9 @@ const authUser = async (e) => {
     try {
         const data = await authRequest(email, password);
         localStorage.setItem("token", data.token);
-        localStorage.setItem("expirationDate", authData.expiresAt);
-        localStorage.setItem("userId", authData.user.id);
-        localStorage.setItem("username", authData.user.username);
+        localStorage.setItem("expirationDate", data.expiresAt);
+        localStorage.setItem("userId", data.user.id);
+        localStorage.setItem("username", data.user.username);
         window.location.href = "/pages/home.html"
     } catch (e) {
         console.error(e);
