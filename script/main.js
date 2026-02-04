@@ -46,7 +46,6 @@ const buildBookContainer = (book) => {
 /* Api Calls*/
 
 const searchInput = document.getElementById("search-input");
-const searchType = document.getElementById("search-select").value;
 const baseUrl = 'https://myreads-4sp9.onrender.com';
 const searchBookPath = '/myreads/books/search/{query}';
 const getBookPath = '/myreads/books/get/{query}';
@@ -59,7 +58,17 @@ const cleanLayout = () => {
 
 async function loadBooks() {
     cleanLayout();
-    const bookSearch = await fetchData("rick riordan", searchBookPath)
+    const bookSave = localStorage.getItem("books");
+    if (bookSave) {
+        const bookObj = JSON.parse(bookSave);
+        for (let i = 0; i < bookObj.length; i++) {
+            buildBookContainer(bookObj[i]);
+        }
+        return;
+    }
+
+    const bookSearch = await fetchData("rick riordan", searchBookPath);
+    localStorage.setItem("books", JSON.stringify(bookSearch));
 
     for (let i = 0; i < bookSearch.length; i++) {
         buildBookContainer(bookSearch[i]);
@@ -68,6 +77,8 @@ async function loadBooks() {
 
 const search = async (e) => {
     e.preventDefault();
+    const searchType = document.getElementById("search-select").value;
+
     const query = searchInput.value || "1";
 
     try {
@@ -144,11 +155,11 @@ function checkLogin() {
         localStorage.clear();
         window.location.href = "/pages/login.html";
         return;
-    } 
+    }
     loadBooks();
 }
 
 
-window.onload = checkLogin();
+window.onload = checkLogin;
 
 const searchForm = document.getElementById("search-form").addEventListener("submit", search)

@@ -10,28 +10,21 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <title>Home Page</title>
+    <title>MyBooks</title>
 </head>
 
 <body>
     <header>
         <h1>MyReads</h1>
 
-        <div class="search-bar">
-            <form id="search-form" class="search-form">
-                <select class="search-select" name="" id="search-select">
-                    <option value="search-books">Books(Gen)</option>
-                    <option value="get-books">Books(No author)</option>
-                    <option value="search-authors">Authors</option>
-                </select>
-                <input id="search-input" class="search-input" type="text" placeholder="Search">
-                <input class="search-submit" type="submit" value="">
-            </form>
+        <div class="user-bar">
+            <img id="user-bar-icon" class="user-icon" src="/images/user.svg" alt="">
+            <h3 id="user-bar-username"></h3>
         </div>
 
         <nav>
-            <li><a href="#">Home</a></li>
-            <li><a href="progress.html">My Books</a></li>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#">My Books</a></li>
         </nav>
     </header>
 
@@ -65,8 +58,6 @@
             <a href="https://github.com/NixonSadique/"><img src="/images/github.svg" alt=""></a>
         </div>
     </footer>
-
-    <script src="/script/main.js"></script>
     <script src="/script/progress.js"></script>
 </body>
 

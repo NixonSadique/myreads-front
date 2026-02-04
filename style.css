@@ -49,7 +49,7 @@ header .search-bar {
 header .search-bar .search-form {
     flex: 1;
     display: flex;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     justify-content: space-around;
     
 }
@@ -60,9 +60,12 @@ header .search-bar .search-form select {
     color: #000000;
     border-radius: 1rem 0 0 1rem;
 }
+
 input:focus{
     outline: invert;
 }
+
+
 
 select option{
     all: inherit;
@@ -87,6 +90,22 @@ header .search-bar .search-form .search-submit {
     cursor: pointer;
     flex: 1;
 }
+
+header .user-bar{
+    /* width: 300px; */
+    height: 50px;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header .user-bar img{
+    border: 2px solid white;
+    height: 40px;
+    border-radius: 50%;
+}
+
 
 header nav {
     display: flex;
@@ -197,29 +216,33 @@ main {
 button:hover,
 .button-container *:hover {
     box-shadow: 2px 3px 1rem var(--secondary-background);
+    transition: all 0.5s ease;
 }
 
 .book-layout {
-    background-color: rgb(94, 67, 67);
+    background-color: var(--primary);
+    border-radius: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem;
 }
 
 .book-container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    box-shadow: 0px 0px 1rem 1px var(--accent);
     padding: 0.5rem;
     border-radius: 1rem;
-    background-color: var(--accent);
+    background-color: var(--secondary);
 }
 
 .book-container img {
-    border: 1px black solid;
     width: 300px;
-    background-color: var(--primary);
+    height: 460px;
     border-radius: 8px;
+    background-image: url();
+    object-fit: contain;
 }
 
 .book-details {
