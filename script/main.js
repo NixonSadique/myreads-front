@@ -1,4 +1,5 @@
 const layout = document.getElementById('book-layout');
+const overlay = document.getElementById('overlay')
 
 const buildBookContainer = (book) => {
     const bookId = book.id;
@@ -8,6 +9,7 @@ const buildBookContainer = (book) => {
 
     const bookContainer = document.createElement('div');
     bookContainer.classList.add('book-container');
+    bookContainer.id = bookId;
 
     const image = document.createElement('img');
     image.src = imageUrl;
@@ -32,6 +34,7 @@ const buildBookContainer = (book) => {
 
     const button = document.createElement('button');
     button.textContent = 'Add Book Progress';
+    button.addEventListener("click", (e) => creationForm(bookId, e));
 
     bookDetails.appendChild(h2Title);
     bookDetails.appendChild(list);
@@ -41,6 +44,54 @@ const buildBookContainer = (book) => {
     bookContainer.appendChild(bookDetails)
 
     layout.appendChild(bookContainer);
+}
+
+
+const creationForm = (bookId, e) => {
+    e.preventDefault();
+
+    console.log("On FORM")
+
+    const form = document.createElement('form');
+    form.classList.add('progress-form');
+    overlay.getElementsByTagName('div')[0].appendChild(form);
+    overlay.classList.remove('hidden');
+
+    const label = document.createElement('label');
+    label.innerText = "What is your completion status in this books?"
+
+    const slider = document.createElement("input");
+    slider.type = "range";
+    slider.min = "0";
+    slider.max = "100";
+    slider.step = "1";
+    slider.value = "0";
+
+    const span = document.createElement('span')
+    span.innerText = slider.value
+    slider.addEventListener('input', (e) => {
+
+        e.preventDefault();
+        span.innerText = slider.value
+
+    })
+
+
+    const submit = document.createElement('input');
+    submit.classList.add('button')
+    submit.type = 'submit';
+
+
+    form.append(label, span, slider, submit);
+    console.log("Form Created")
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        overlay.classList.add('hidden')
+        form.remove();
+        console.log("Form Event Listener")
+        createProgress(slider.value, bookId);
+    })
 }
 
 /* Api Calls*/
@@ -153,6 +204,7 @@ function checkLogin() {
 
     if (now > targetDate) {
         localStorage.clear();
+        alert("Your Token expired!\n Log in, to create a new one!")
         window.location.href = "/pages/login.html";
         return;
     }
@@ -161,5 +213,11 @@ function checkLogin() {
 
 
 window.onload = checkLogin;
+
+function hide() {
+    overlay.classList.add('hidden');
+    const form = document.getElementsByClassName('progress-form')[0]
+    overlay.getElementsByTagName('div')[0].removeChild(form);
+}
 
 const searchForm = document.getElementById("search-form").addEventListener("submit", search)
