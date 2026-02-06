@@ -1,8 +1,3 @@
-const baseUrl = 'https://myreads-4sp9.onrender.com';
-// const baseUrl = 'http://localhost:8080';
-
-const authPath = '/myreads/auth/login';
-const createUserPath = '/myreads/user/create';
 
 const createForm = document.getElementById('signin-form');
 const loginForm = document.getElementById('login-form');
@@ -26,14 +21,19 @@ const createUser = async (e) => {
     try {
         const data = await userCreationResquest(username, email, password);
         alert(data);
+
         const authData = await authRequest(email, password);
+        
         localStorage.setItem("token", authData.token);
         localStorage.setItem("expirationDate", authData.expiresAt);
         localStorage.setItem("userId", authData.user.id);
         localStorage.setItem("username", authData.user.username);
+        
         window.location.href = "/pages/home.html";
+
     } catch (e) {
         console.error(e);
+        alert(e);
     }
 
 }

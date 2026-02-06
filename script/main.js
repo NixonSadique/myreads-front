@@ -1,32 +1,30 @@
+const searchForm = document.getElementById("search-form")
 const layout = document.getElementById('book-layout');
 const overlay = document.getElementById('overlay')
+const searchInput = document.getElementById("search-input");
 
-const buildBookContainer = (book) => {
-    const bookId = book.id;
-    const title = book.title;
-    const imageUrl = book.image;
-    const authors = book.authors;
+const buildBookContainer = (book, progressid=null) => {
 
     const bookContainer = document.createElement('div');
     bookContainer.classList.add('book-container');
-    bookContainer.id = bookId;
+    bookContainer.id = book.id;
 
     const image = document.createElement('img');
-    image.src = imageUrl;
+    image.src = book.image;
 
     const bookDetails = document.createElement('div');
     bookDetails.classList.add('book-details');
 
     const h2Title = document.createElement('h2');
-    h2Title.textContent = title;
+    h2Title.textContent = book.title;
 
     const list = document.createElement('ul');
     list.classList.add('authors-list');
 
-    if (authors) {
-        for (let i = 0; i < authors.length; i++) {
+    if (book.authors) {
+        for (let i = 0; i < book.authors.length; i++) {
             const listElement = document.createElement('li');
-            listElement.textContent = authors[i].name;
+            listElement.textContent = book.authors[i].name;
 
             list.appendChild(listElement);
         }
@@ -34,7 +32,7 @@ const buildBookContainer = (book) => {
 
     const button = document.createElement('button');
     button.textContent = 'Add Book Progress';
-    button.addEventListener("click", (e) => creationForm(bookId, e));
+    button.addEventListener("click", (e) => creationForm(book.id, e));
 
     bookDetails.appendChild(h2Title);
     bookDetails.appendChild(list);
@@ -58,7 +56,7 @@ const creationForm = (bookId, e) => {
     overlay.classList.remove('hidden');
 
     const label = document.createElement('label');
-    label.innerText = "What is your completion status in this books?"
+    label.innerText = "How much have you read this book?"
 
     const slider = document.createElement("input");
     slider.type = "range";
@@ -68,11 +66,11 @@ const creationForm = (bookId, e) => {
     slider.value = "0";
 
     const span = document.createElement('span')
-    span.innerText = slider.value
+    span.innerText = slider.value + "%"
     slider.addEventListener('input', (e) => {
 
         e.preventDefault();
-        span.innerText = slider.value
+        span.innerText = slider.value + "%"
 
     })
 
@@ -85,30 +83,26 @@ const creationForm = (bookId, e) => {
     form.append(label, span, slider, submit);
     console.log("Form Created")
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
+
         overlay.classList.add('hidden')
         form.remove();
+        
         console.log("Form Event Listener")
         createProgress(slider.value, bookId);
     })
 }
 
-/* Api Calls*/
 
-const searchInput = document.getElementById("search-input");
-const baseUrl = 'https://myreads-4sp9.onrender.com';
-const searchBookPath = '/myreads/books/search/{query}';
-const getBookPath = '/myreads/books/get/{query}';
-const similaarBookPath = '/myreads/books/similar/{id}';
-const searchAuthorsPath = '/myreads/books/authors/{query}';
 
-const cleanLayout = () => {
+const cleanLayout = (layout) => {
     layout.innerHTML = "";
 }
 
 async function loadBooks() {
-    cleanLayout();
+    cleanLayout(layout);
+    
     const bookSave = localStorage.getItem("books");
     if (bookSave) {
         const bookObj = JSON.parse(bookSave);
@@ -118,12 +112,19 @@ async function loadBooks() {
         return;
     }
 
-    const bookSearch = await fetchData("rick riordan", searchBookPath);
-    localStorage.setItem("books", JSON.stringify(bookSearch));
-
-    for (let i = 0; i < bookSearch.length; i++) {
-        buildBookContainer(bookSearch[i]);
+    try {
+        const bookSearch = await fetchData("rick riordan", searchBookPath);
+        localStorage.setItem("books", JSON.stringify(bookSearch));
+    
+        for (let i = 0; i < bookSearch.length; i++) {
+            buildBookContainer(bookSearch[i]);
+        }
+        
+    } catch (error) {
+        alert(e);
+        console.error(e);
     }
+
 }
 
 const search = async (e) => {
@@ -136,7 +137,7 @@ const search = async (e) => {
 
         switch (searchType) {
             case "search-books":
-                cleanLayout();
+                cleanLayout(layout);
                 const bookSearch = await fetchData(query, searchBookPath)
 
                 for (let i = 0; i < bookSearch.length; i++) {
@@ -144,21 +145,24 @@ const search = async (e) => {
                 }
                 break;
             case "get-books":
-                cleanLayout();
+                cleanLayout(layout);
                 const getBooks = await fetchData(query, getBookPath);
 
                 for (let i = 0; i < getBooks.length; i++) {
                     buildBookContainer(getBooks[i]);
                 }
                 break;
-            case 'searchAuthors':
-                cleanLayout();
+            case 'search-authors':
+                cleanLayout(layout);
                 const authors = await fetchData(query, searchAuthorsPath);
                 const ol = document.createElement('ol')
                 for (let i = 0; i < authors.length; i++) {
                     const li = document.createElement('li');
-                    layout.appendChild(li.innerText = `${authors[i].id} : ${authors[i].name}`)
+                    li.innerText = `${authors[i].id} : ${authors[i].name}`
+                    ol.appendChild(li)
                 }
+
+                layout.appendChild(ol)
 
                 break;
             default:
@@ -206,13 +210,16 @@ function checkLogin() {
         localStorage.clear();
         alert("Your Token expired!\n Log in, to create a new one!")
         window.location.href = "/pages/login.html";
-        return;
+        return false;
     }
-    loadBooks();
+    return true;
 }
 
+if (window.location.pathname.endsWith("home.html") && checkLogin()) {
+    window.onload = loadBooks();
+    
+}
 
-window.onload = checkLogin;
 
 function hide() {
     overlay.classList.add('hidden');
@@ -220,4 +227,7 @@ function hide() {
     overlay.getElementsByTagName('div')[0].removeChild(form);
 }
 
-const searchForm = document.getElementById("search-form").addEventListener("submit", search)
+
+if (searchForm) {
+    searchForm.addEventListener("submit", search)
+}
