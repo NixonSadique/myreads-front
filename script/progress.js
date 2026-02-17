@@ -64,7 +64,6 @@ const userProgressRequest = async () => {
 async function createProgress(completion, bookId) {
 
     try {
-        // alert("Not working for now!!!!");
         const data = await progressCreationRequest(completion, bookId);
         alert(data)
     } catch (error) {

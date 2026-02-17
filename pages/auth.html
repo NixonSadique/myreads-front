@@ -26,9 +26,9 @@
             <form id="signin-form" onsubmit="">
                 <h1 class="form-title">Sign In</h1>
                 <div class="form-layout">
-                    <input id="sign-username" type="text" placeholder="Username">
-                    <input id="sign-email" type="email" placeholder="E-mail">
-                    <input id="sign-pass" type="password" placeholder="Password">
+                    <input id="sign-username" minlength="3", maxlength="8   " type="text" placeholder="Username" required>
+                    <input id="sign-email" type="email" placeholder="E-mail" required>
+                    <input id="sign-pass" minlength="8" type="password" placeholder="Password"  required>
                     <span>Already have an account?<a href="login.html">Login here...</a></span>
                     <button type="submit">Sign In</button>
                 </div>
